@@ -202,12 +202,6 @@ export const heroDiagram = `
     <path class="flow flow--delayed" d="M252 70h100"/>
   </g>
 
-  <!-- Terminal nodes -->
-  <g fill="var(--accent)">
-    <circle cx="100" cy="70" r="3"/>
-    <circle cx="352" cy="70" r="3"/>
-  </g>
-
   <!-- Labels -->
   <g fill="var(--text-faint)" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1">
     <text x="50" y="106" text-anchor="middle">PV ARRAY</text>
