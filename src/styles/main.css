@@ -623,8 +623,11 @@ code, kbd, samp, pre { font-family: var(--font-mono); }
 .portrait-frame {
   position: relative;
   justify-self: center;
-  width: min(20rem, 76vw);
-  aspect-ratio: 1 / 1;
+  width: min(18rem, 72vw);
+  /* Matches the portrait's own ratio (762 x 904) so the photo sits inside
+     at its natural crop, instead of a square frame forcing the top of the
+     head out of frame. */
+  aspect-ratio: 762 / 904;
   border-radius: var(--radius-lg);
   background:
     radial-gradient(circle at 50% 120%, rgb(var(--glow) / 0.22), transparent 60%),
@@ -646,7 +649,7 @@ code, kbd, samp, pre { font-family: var(--font-mono); }
 .portrait-frame::before { top: 0.7rem; left: 0.7rem; border-right: 0; border-bottom: 0; }
 .portrait-frame::after { bottom: 0.7rem; right: 0.7rem; border-left: 0; border-top: 0; }
 .portrait-frame img {
-  width: 90%;
+  width: 96%;
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgb(0 0 0 / 0.35));
 }
