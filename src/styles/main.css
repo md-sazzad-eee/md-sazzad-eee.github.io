@@ -619,53 +619,28 @@ code, kbd, samp, pre { font-family: var(--font-mono); }
 
 .hero-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.9rem; list-style: none; padding: 0; }
 
-/* Portrait framed like an instrument readout, with corner ticks */
+/* Portrait: no decorative frame box around it (one forced a crop mismatch
+   against the photo's own proportions) — just the photo itself, sized to
+   its own natural ratio, with a soft shadow and a glow behind it. */
 .portrait-frame {
   position: relative;
   justify-self: center;
   width: min(18rem, 72vw);
-  /* Matches the portrait's own ratio (762 x 904) so the photo sits inside
-     at its natural crop, instead of a square frame forcing the top of the
-     head out of frame. */
-  aspect-ratio: 762 / 904;
-  border-radius: var(--radius-lg);
-  background:
-    radial-gradient(circle at 50% 120%, rgb(var(--glow) / 0.22), transparent 60%),
-    var(--bg-subtle);
-  border: 1px solid var(--border-strong);
-  display: grid;
-  place-items: end center;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  isolation: isolate;
 }
-.portrait-frame::before,
-.portrait-frame::after {
+.portrait-frame::before {
   content: '';
   position: absolute;
-  width: 1.1rem; height: 1.1rem;
-  border: 2px solid var(--accent);
-  opacity: 0.75;
+  inset: -10%;
+  z-index: -1;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 60%, rgb(var(--glow) / 0.22), transparent 65%);
 }
-.portrait-frame::before { top: 0.7rem; left: 0.7rem; border-right: 0; border-bottom: 0; }
-.portrait-frame::after { bottom: 0.7rem; right: 0.7rem; border-left: 0; border-top: 0; }
 .portrait-frame img {
-  width: 96%;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgb(0 0 0 / 0.35));
-}
-
-/* Scanline that sweeps the portrait, like a refreshing display */
-.portrait-frame .scan {
-  position: absolute;
-  inset-inline: 0;
-  height: 30%;
-  background: linear-gradient(180deg, transparent, rgb(var(--glow) / 0.14), transparent);
-  animation: scan 7s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes scan {
-  0%, 100% { transform: translateY(-40%); opacity: 0; }
-  50% { transform: translateY(240%); opacity: 1; }
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ---------- Chips ---------- */

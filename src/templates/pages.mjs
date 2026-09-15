@@ -184,7 +184,6 @@ function home({ site, about, publications, news }) {
              width="381" height="452" fetchpriority="high" decoding="async"
              alt="Portrait of ${attr(site.name)}">
       </picture>
-      <span class="scan" aria-hidden="true"></span>
     </div>
   </div>
 
@@ -496,7 +495,7 @@ function researchPage({ site, projects }) {
   return {
     path: '/research/',
     title: 'Research',
-    description: `Research projects by ${site.name}: self-calibrating digital twins for PV inverters, grey-box parameter estimation, perovskite tandem cells, and edge AI.`,
+    description: `Research projects by ${site.name}: self-calibrating digital twins for PV inverters and batteries, grid-forming inverter stability, GaN HEMT thermal modeling, perovskite tandem cells, and edge AI.`,
     breadcrumbs: [
       { href: '/', label: 'Home' },
       { href: '/research/', label: 'Research' },
@@ -506,7 +505,8 @@ function researchPage({ site, projects }) {
   <div class="wrap">
     <p class="eyebrow">Research</p>
     <h1>Research projects</h1>
-    <p class="lede">Four projects, running from device-level photovoltaics up to system-level digital twins of inverter-dominated grids.</p>
+    <p class="lede">${projects.length} projects, running from device-level photovoltaics and batteries up to system-level digital twins and stability certification for inverter-dominated grids.</p>
+    <p style="color:var(--text-faint);font-size:var(--step--1);margin-top:.6rem">A few more manuscripts are being finalized and will be added here once they're ready to share.</p>
   </div>
 </section>
 

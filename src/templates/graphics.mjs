@@ -148,6 +148,10 @@ export const interestIcon = {
 export const projectIcon = {
   'digital-twin-pv': 'twin',
   'grey-box-inverter': 'inverter',
+  'battery-digital-twin': 'plug',
+  'grid-forming-dsm': 'nodes',
+  'gan-hemt-thermal-pinn': 'chip',
+  'digital-twin-staleness': 'twin',
   'perovskite-tandem': 'layers',
   'edge-vision': 'chip',
 };
@@ -162,7 +166,7 @@ export const iconFor = (map, key) => eee[map[key]] || eee.waveform;
  * assistive technology and the surrounding text carries the meaning.
  */
 export const heroDiagram = `
-<svg class="hero-diagram" viewBox="0 0 420 150" role="img"
+<svg class="hero-diagram" viewBox="0 0 420 210" role="img"
      aria-label="Diagram of a photovoltaic array feeding a grid following inverter, which feeds the transmission grid, with the resulting alternating current waveform shown below."
      preserveAspectRatio="xMidYMid meet">
   <defs>
@@ -204,17 +208,20 @@ export const heroDiagram = `
     <circle cx="352" cy="70" r="3"/>
   </g>
 
-  <!-- Output waveform -->
-  <path class="hero-wave" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"
-        d="M20 128c12 0 12-22 24-22s12 22 24 22 12-22 24-22 12 22 24 22 12-22 24-22 12 22 24 22
-           12-22 24-22 12 22 24 22 12-22 24-22 12 22 24 22 12-22 24-22 12 22 24 22 12-22 24-22 12 22 24 22"/>
-
   <!-- Labels -->
   <g fill="var(--text-faint)" font-family="ui-monospace, monospace" font-size="9" letter-spacing="1">
     <text x="50" y="106" text-anchor="middle">PV ARRAY</text>
     <text x="210" y="112" text-anchor="middle">GRID FOLLOWING INVERTER</text>
     <text x="370" y="116" text-anchor="middle">GRID</text>
   </g>
+
+  <!-- Divider between the schematic and the waveform it produces -->
+  <line x1="16" y1="140" x2="404" y2="140" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4"/>
+
+  <!-- Output waveform, given its own clear band below everything else -->
+  <path class="hero-wave" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"
+        d="M20 178c12 0 12-20 24-20s12 20 24 20 12-20 24-20 12 20 24 20 12-20 24-20 12 20 24 20
+           12-20 24-20 12 20 24 20 12-20 24-20 12 20 24 20 12-20 24-20 12 20 24 20 12-20 24-20 12 20 24 20"/>
 </svg>`;
 
 /** Extra CSS the hero diagram needs. Appended to the deferred stylesheet. */
