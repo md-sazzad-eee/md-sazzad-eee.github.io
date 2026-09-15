@@ -315,28 +315,49 @@
       Array.prototype.forEach.call(counters, function (el) { countObserver.observe(el); });
     }
 
-    /* Reveal on scroll. */
+    /* Reveal on scroll. Deferred one frame: a page script that runs after this one
+       (for example the publications list's initial sort) can still reorder the DOM
+       first, so the "already on screen" check below sees final layout, not a
+       position that is about to move. Without this, an element judged off-screen
+       pre-sort could get animated in at its old spot and never actually reveal
+       once moved, or vice versa. */
     if (!reduced) {
-      var io = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            entry.target.setAttribute('data-shown', 'true');
-            io.unobserve(entry.target);
-          });
-        },
-        { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
-      );
+      requestAnimationFrame(function () {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.setAttribute('data-shown', 'true');
+              io.unobserve(entry.target);
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
+        );
 
-      var targets = document.querySelectorAll(
-        '.section-head, .card, .pub, .timeline > li, .metric, .hero-visual'
-      );
-      Array.prototype.forEach.call(targets, function (el, i) {
-        // Anything already on screen at load skips the animation entirely.
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
-        el.classList.add('reveal');
-        el.style.transitionDelay = Math.min(i % 6, 5) * 55 + 'ms';
-        io.observe(el);
+        var targets = document.querySelectorAll(
+          '.section-head, .card, .pub, .timeline > li, .metric, .hero-visual'
+        );
+        var pending = [];
+        Array.prototype.forEach.call(targets, function (el, i) {
+          // Anything already on screen at load skips the animation entirely.
+          if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
+          el.classList.add('reveal');
+          el.style.transitionDelay = Math.min(i % 6, 5) * 55 + 'ms';
+          io.observe(el);
+          pending.push(el);
+        });
+
+        // Safety net: a fast programmatic scroll (or a browser quirk) can in rare
+        // cases skip the intersection check for a given frame. Content must never
+        // stay permanently invisible over an animation nicety, so anything still
+        // unrevealed a few seconds after load is shown unconditionally.
+        if (pending.length) {
+          setTimeout(function () {
+            pending.forEach(function (el) {
+              if (el.getAttribute('data-shown') !== 'true') el.setAttribute('data-shown', 'true');
+            });
+          }, 2500);
+        }
       });
     }
   }
