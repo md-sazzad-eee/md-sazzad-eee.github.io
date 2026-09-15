@@ -192,10 +192,6 @@ ${scholarMeta}
 
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>${navHtml}</ul>
-      <p class="nav-cv">
-        <a class="btn btn--sm" href="${site.cv.primary.file}" download="${attr(site.cv.primary.download)}"
-           type="application/pdf">${icon.download}<span>Download CV</span></a>
-      </p>
     </nav>
   </div>
 </header>

@@ -490,8 +490,6 @@ code, kbd, samp, pre { font-family: var(--font-mono); }
 }
 .site-nav a:hover { background: var(--bg-inset); color: var(--accent); }
 .site-nav a[aria-current='page'] { color: var(--accent); background: var(--accent-soft); }
-.nav-cv { margin-top: 0.75rem; }
-.nav-cv .btn { width: 100%; }
 
 .no-js .nav-toggle { display: none; }
 .no-js .site-nav { display: block; position: static; box-shadow: none; border: 0; padding-inline: 0; }
@@ -519,12 +517,6 @@ code, kbd, samp, pre { font-family: var(--font-mono); }
   }
   .site-nav a:hover::after,
   .site-nav a[aria-current='page']::after { transform: scaleX(1); }
-  .nav-cv { margin-top: 0; margin-inline-start: 0.6rem; }
-  /* `.site-nav a` (below) outranks the plain `.btn` selector on specificity
-     alone, which blockifies this link to `display: flex` and would make
-     `width: auto` fill the row instead of shrinking to its label. Restoring
-     `inline-flex` here, at equal-or-higher specificity, fixes both. */
-  .nav-cv .btn { width: auto; display: inline-flex; }
 }
 
 /* === INTERIOR-ONLY ===
