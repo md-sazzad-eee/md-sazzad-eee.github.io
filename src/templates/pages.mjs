@@ -792,7 +792,11 @@ function contactPage({ site }) {
       ${profileLinks(site)}
       <div class="card" style="margin-top:1.75rem">
         <h3>${icon.pin} Location</h3>
-        <p style="margin-top:.4rem">${esc(site.location)}</p>
+        <p style="margin-top:.4rem">${
+          site.locationMapUrl
+            ? `<a href="${attr(site.locationMapUrl)}" rel="noopener">${esc(site.location)}</a>`
+            : esc(site.location)
+        }</p>
         <p style="margin-top:.75rem">Open to relocating internationally for a PhD position.</p>
       </div>
       <p class="btn-row" style="margin-top:1.5rem">${cvButton(site, 'btn btn--ghost')}</p>

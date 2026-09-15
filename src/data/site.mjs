@@ -45,11 +45,13 @@ export const site = {
   // ---- FILL IN when you have them ----
   profiles: {
     googleScholar: '', // e.g. https://scholar.google.com/citations?user=XXXX
-    orcid: '', // e.g. https://orcid.org/0000-0000-0000-0000
+    orcid: 'https://orcid.org/0009-0005-2937-7666',
     researchGate: '', // e.g. https://www.researchgate.net/profile/XXXX
     linkedin: 'https://www.linkedin.com/in/md-sazzad-eee',
     github: 'https://github.com/md-sazzad-eee',
   },
+
+  locationMapUrl: 'https://maps.app.goo.gl/8wwykM3eoSpLxrJN7',
 
   // Web3Forms access key. Get a free one at https://web3forms.com
   // Leave empty and the contact form gracefully falls back to a mailto: link.
