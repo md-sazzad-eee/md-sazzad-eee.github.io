@@ -431,7 +431,8 @@ async function build() {
   // The publications list carries real, substantive abstracts (not placeholders), so its
   // natural size sits above the original 50KB mark reserved for above-the-fold pages; the
   // budget here tracks accidental bloat, not this page's legitimate content growth.
-  const budget = 60 * 1024;
+  // Raised again as two more real publications (an acceptance and a journal submission) landed.
+  const budget = 72 * 1024;
   console.log(`  largest HTML page: ${(biggest / 1024).toFixed(1)} KB (budget ${budget / 1024} KB)`);
   console.log(`  output: ${path.relative(process.cwd(), OUT)}/`);
   if (biggest > budget) console.warn('  ⚠ a page exceeds the HTML budget');

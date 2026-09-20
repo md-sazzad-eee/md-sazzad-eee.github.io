@@ -436,6 +436,59 @@ export const publications = [
     abstractPlaceholder: false,
     bibtex: '',
   },
+  {
+    id: 'isgtasia2026-pv-digital-twin',
+    title:
+      'Recursive Bayesian Self-Calibration and Conformal Uncertainty Bounds for Solar-PV Digital Twins Under Grid Variability',
+    authors: ['Md. Sazzad Hossain', 'Apurba Joty Roy', 'Shaharier Kabir', 'Abu Shufian'],
+    authorLine: 'Lead author',
+    myPosition: 1,
+    venue: 'IEEE PES Innovative Smart Grid Technologies Asia (ISGT Asia)',
+    venueShort: 'ISGT Asia',
+    year: 2026,
+    date: '2026-09-20',
+    dateLabel: 'Accepted, presentation 30 October to 1 November 2026',
+    place: 'Wuhan, China',
+    type: 'conference',
+    status: 'accepted',
+    area: 'Digital twins',
+    doi: '', // add once IEEE Xplore indexes it
+    url: 'https://attend.ieee.org/isgt-asia-2026/',
+    // replace with the published abstract
+    abstract:
+      'Abstract to be added once the camera ready version is public. Extends the group’s self-calibrating photovoltaic digital twin work with recursive Bayesian self-calibration and conformal uncertainty bounds, evaluated under grid variability.',
+    abstractPlaceholder: true,
+    bibtex: '',
+  },
+  {
+    id: 'nextsust2026-staleness-journal',
+    title:
+      'Digital-Twin Staleness Detection in Renewable Generation: A False-Alarm-Matched Benchmark of Sequential Drift Detectors across Sixteen European Fleets',
+    authors: [
+      'Md. Sazzad Hossain',
+      'Apurba Joty Roy',
+      'Abu Shufian',
+      'Debashish Kumar Ghosh',
+      'Md. Sajid Hossain',
+    ],
+    authorLine: 'Lead author',
+    myPosition: 1,
+    venue: 'Next Sustainability',
+    venueShort: 'Next Sustainability',
+    year: 2026,
+    date: '2026-09-18',
+    dateLabel: 'Submitted September 2026',
+    place: '',
+    type: 'journal',
+    status: 'under-review',
+    area: 'Digital twins',
+    doi: '', // manuscript NXSUST-D-26-01704
+    url: '',
+    abstract:
+      'A digital twin of a renewable generation asset loses predictive accuracy as the physical fleet evolves, a degradation termed staleness or model drift, yet the operational question of when a deployed twin should be recalibrated is rarely answered with statistical rigor. Prior studies typically report that a chosen change detector fires earlier than a baseline at a single, unmatched threshold, which conflates detector sensitivity with the false-alarm rate the operator is implicitly accepting. This paper reframes staleness detection as a matched-false-alarm benchmarking problem and evaluates five sequential detectors, the Page-Hinkley test, a rolling-RMSE control chart, a cumulative sum chart, an exponentially weighted moving-average chart, and a Kolmogorov-Smirnov windowing test, on residuals from a Random-Forest twin of sixteen European solar and wind fleets over six years of Open Power System Data. When every detector is calibrated to raise zero false alarms on the in-control 2015 to 2017 period, the Page-Hinkley advantage a single fleet suggests does not generalize: across sixteen fleets the mean detection lead over the rolling-RMSE chart is minus 18 days, and a delay-versus-false-alarm analysis shows the control chart detects gradual solar drift at least as quickly at practical false-alarm rates. A capacity-factor decomposition attributes roughly seventy to ninety-three percent of the mean residual on the two solar fleets examined to structural fleet growth, while a residual staleness signal persists and remains detectable. A fleet-wide study of recalibration policies shows timely retraining reduces error under genuine drift but degrades accuracy in noise-dominated wind fleets, yielding a regime-conditioned deployment guideline.',
+    abstractPlaceholder: false,
+    bibtex: '',
+  },
 ];
 
 export const projects = [
@@ -456,7 +509,10 @@ export const projects = [
     ],
     collaborators: 'Research group at American International University-Bangladesh (AIUB)',
     funding: 'Unfunded undergraduate research.',
-    outputs: [{ label: 'TENSYMP 2026 paper', href: '/publications/#tensymp2026-digitaltwin' }],
+    outputs: [
+      { label: 'TENSYMP 2026 paper', href: '/publications/#tensymp2026-digitaltwin' },
+      { label: 'ISGT Asia 2026 paper (accepted)', href: '/publications/#isgtasia2026-pv-digital-twin' },
+    ],
   },
   {
     id: 'grey-box-inverter',
@@ -543,9 +599,15 @@ export const projects = [
       'Shows the Page-Hinkley statistic is algebraically identical to the one-sided CUSUM recursion, which explains why the two were never really competing methods to begin with.',
       'A two-factor study isolating that the retraining window, not which trigger you pick, is what actually determines whether recalibration pays off.',
     ],
-    collaborators: 'Apurba Joty Roy, Abu Shufian, Raihan Chowdhury, Goro Fujita',
+    collaborators: 'Apurba Joty Roy, Abu Shufian, Raihan Chowdhury, Goro Fujita, Debashish Kumar Ghosh, Md. Sajid Hossain',
     funding: 'Unfunded undergraduate research.',
-    outputs: [{ label: 'NSysS 2026 paper (under review)', href: '/publications/#nsyss2026-staleness' }],
+    outputs: [
+      { label: 'NSysS 2026 paper (under review)', href: '/publications/#nsyss2026-staleness' },
+      {
+        label: 'Next Sustainability journal paper (under review)',
+        href: '/publications/#nextsust2026-staleness-journal',
+      },
+    ],
   },
   {
     id: 'perovskite-tandem',
