@@ -778,14 +778,6 @@ function contactPage({ site }) {
     <div>
       <h2 style="font-size:var(--step-2);margin-bottom:1rem">Send a message</h2>
 
-      ${
-        hasForm
-          ? ''
-          : `<p class="form-status form-status--error" style="margin-bottom:1.25rem">
-        <strong>Form not yet connected.</strong> Add a free Web3Forms access key to
-        <code>src/data/site.mjs</code> and rebuild to enable sending. Until then the button opens your email client.
-      </p>`
-      }
 
       <form id="contact-form" class="form-grid"
             action="${hasForm ? 'https://api.web3forms.com/submit' : `mailto:${attr(site.email)}`}"
