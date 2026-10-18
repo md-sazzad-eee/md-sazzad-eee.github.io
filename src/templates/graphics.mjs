@@ -132,15 +132,13 @@ export const eee = {
 /* Which icon represents which research interest and project.
    Keyed by title and id so that reordering the content never breaks the pairing. */
 export const interestIcon = {
-  'Artificial intelligence for power systems': 'network',
-  'Machine learning for energy systems': 'scope',
-  'Cyber physical energy infrastructure': 'twin',
-  'Power system stability and resilience': 'waveform',
+  'Inverter control and stability': 'inverter',
+  'Digital twins': 'twin',
+  'Trustworthy machine learning': 'scope',
+  'Power-electronics reliability': 'reliability',
   'Renewable energy integration': 'solar',
   'Distributed energy resources and microgrids': 'nodes',
-  'Power system reliability': 'reliability',
   'Grid modernization': 'meter',
-  'Optimization for power systems': 'optimize',
   'Photovoltaic device modeling': 'layers',
   'Edge AI and embedded systems': 'chip',
 };
@@ -148,10 +146,14 @@ export const interestIcon = {
 export const projectIcon = {
   'digital-twin-pv': 'twin',
   'grey-box-inverter': 'inverter',
+  'sic-thermal-history': 'reliability',
+  'photonic-bond-health': 'sensor',
+  'grid-forming-twins': 'waveform',
+  'cyber-physical-detection': 'network',
   'battery-digital-twin': 'plug',
-  'grid-forming-dsm': 'nodes',
   'gan-hemt-thermal-pinn': 'chip',
   'digital-twin-staleness': 'twin',
+  'atlas-robotics': 'nodes',
   'perovskite-tandem': 'layers',
   'edge-vision': 'chip',
 };

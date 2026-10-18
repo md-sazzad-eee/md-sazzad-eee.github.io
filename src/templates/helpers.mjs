@@ -50,6 +50,8 @@ export const STATUS_LABEL = {
   accepted: 'Accepted',
   presented: 'Presented',
   'under-review': 'Under review',
+  submitted: 'Submitted',
+  'in-preparation': 'In preparation',
 };
 
 export const TYPE_LABEL = {

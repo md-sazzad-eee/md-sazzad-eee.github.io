@@ -8,8 +8,11 @@ import { eee, heroDiagram, interestIcon, projectIcon, iconFor } from './graphics
 
 /* ------------------------------------------------------------------ pieces */
 
+const isOut = (p) => ['published', 'presented', 'accepted'].includes(p.status);
+const isPending = (p) => ['under-review', 'submitted'].includes(p.status);
+
 const statusChip = (s) => {
-  const cls = s === 'under-review' ? 'chip--warn' : s === 'accepted' ? 'chip--accent' : 'chip--ok';
+  const cls = ['under-review', 'submitted', 'in-preparation'].includes(s) ? 'chip--warn' : s === 'accepted' ? 'chip--accent' : 'chip--ok';
   return `<span class="chip ${cls}">${esc(STATUS_LABEL[s] || s)}</span>`;
 };
 
@@ -140,7 +143,7 @@ const divider = `<div class="divider" aria-hidden="true">
 </div>`;
 
 function home({ site, about, publications, news }) {
-  const recent = publications.filter((p) => p.status !== 'under-review').slice(0, 3);
+  const recent = publications.filter(isOut).slice(0, 3);
 
   return {
     path: '/',
@@ -169,8 +172,8 @@ function home({ site, about, publications, news }) {
       </div>
       <ul class="hero-facts">
         <li class="chip chip--accent chip--live">Seeking PhD positions</li>
-        <li class="chip chip--mono">${publications.filter((p) => p.status !== 'under-review').length} presented or accepted</li>
-        <li class="chip chip--mono">${publications.filter((p) => p.status === 'under-review').length} under review</li>
+        <li class="chip chip--mono">${publications.filter(isOut).length} published or accepted</li>
+        <li class="chip chip--mono">${publications.filter(isPending).length} under review or submitted</li>
       </ul>
     </div>
     <div class="portrait-frame">
@@ -210,7 +213,7 @@ function home({ site, about, publications, news }) {
         )
         .join('')}
     </div>
-    <p style="margin-top:1.75rem"><a href="/about/">All eleven research interests, and my background</a></p>
+    <p style="margin-top:1.75rem"><a href="/about/">All ${about.interests.length} research interests, and my background</a></p>
   </div>
 </section>
 
@@ -406,7 +409,7 @@ function publicationsPage({ site, publications }) {
   return {
     path: '/publications/',
     title: 'Publications',
-    description: `Peer-reviewed conference papers and journal submissions by ${site.name} on digital twins, grid-following inverters, and perovskite photovoltaics.`,
+    description: `Conference papers and journal manuscripts by ${site.name} on digital twins, grid-forming and grid-following inverters, power-electronics reliability, cyber-physical security, and photovoltaics.`,
     breadcrumbs: [
       { href: '/', label: 'Home' },
       { href: '/publications/', label: 'Publications' },
@@ -419,8 +422,9 @@ function publicationsPage({ site, publications }) {
     <p class="eyebrow">Publications</p>
     <h1>Publications</h1>
     <p class="lede">
-      ${publications.filter((p) => p.status !== 'under-review').length} presented or accepted papers and
-      ${publications.filter((p) => p.status === 'under-review').length} manuscripts under review.
+      ${publications.filter(isOut).length} published or accepted papers,
+      ${publications.filter(isPending).length} manuscripts under review or submitted, and
+      ${publications.filter((p) => p.status === 'in-preparation').length} in preparation.
       ${site.profiles.googleScholar ? '' : 'A Google Scholar profile will be linked here once it is set up.'}
     </p>
     ${
@@ -495,7 +499,7 @@ function researchPage({ site, projects }) {
   return {
     path: '/research/',
     title: 'Research',
-    description: `Research projects by ${site.name}: self-calibrating digital twins for PV inverters and batteries, grid-forming inverter stability, GaN HEMT thermal modeling, perovskite tandem cells, and edge AI.`,
+    description: `Research projects by ${site.name}: self-calibrating digital twins for PV inverters and batteries, grid-forming inverter stability, SiC and GaN reliability, cyber-physical attack detection, perovskite tandem cells, and robotics.`,
     breadcrumbs: [
       { href: '/', label: 'Home' },
       { href: '/research/', label: 'Research' },
@@ -505,8 +509,7 @@ function researchPage({ site, projects }) {
   <div class="wrap">
     <p class="eyebrow">Research</p>
     <h1>Research projects</h1>
-    <p class="lede">${projects.length} projects, running from device-level photovoltaics and batteries up to system-level digital twins and stability certification for inverter-dominated grids.</p>
-    <p style="color:var(--text-faint);font-size:var(--step--1);margin-top:.6rem">A few more manuscripts are being finalized and will be added here once they're ready to share.</p>
+    <p class="lede">${projects.length} projects, running from device-level power electronics, photovoltaics and batteries up to system-level digital twins, stability and cyber-physical security for inverter-dominated grids.</p>
   </div>
 </section>
 
