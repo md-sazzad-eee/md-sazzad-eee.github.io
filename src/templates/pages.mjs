@@ -4,7 +4,8 @@
  */
 
 import { esc, attr, tidy, fmtDate, icon, NAV, STATUS_LABEL, TYPE_LABEL } from './helpers.mjs';
-import { eee, heroDiagram, interestIcon, projectIcon, iconFor } from './graphics.mjs';
+import { eee, interestIcon, projectIcon, areaIcon, iconFor } from './graphics.mjs';
+import { heroScene, researchLoop } from './scene.mjs';
 
 /* ------------------------------------------------------------------ pieces */
 
@@ -61,7 +62,7 @@ function pubItem(pub, { headingLevel = 3 } = {}) {
     ${statusChip(pub.status)}
     <span class="chip">${esc(TYPE_LABEL[pub.type] || pub.type)}</span>
     <span class="chip">${pub.year}</span>
-    ${pub.area ? `<span class="chip">${esc(pub.area)}</span>` : ''}
+    ${pub.area ? `<span class="chip chip--area">${eee[areaIcon[pub.area]] || ''}${esc(pub.area)}</span>` : ''}
   </div>
   <${H}>${titleHtml}</${H}>
   <p class="authors">${authorLine(pub)}</p>
@@ -142,7 +143,7 @@ const divider = `<div class="divider" aria-hidden="true">
   <span class="divider-node"></span>
 </div>`;
 
-function home({ site, about, publications, news }) {
+function home({ site, about, publications, news, projects }) {
   const recent = publications.filter(isOut).slice(0, 3);
 
   return {
@@ -177,6 +178,10 @@ function home({ site, about, publications, news }) {
       </ul>
     </div>
     <div class="portrait-frame">
+      <span class="pf-ring" aria-hidden="true"></span>
+      <span class="pf-corners" aria-hidden="true"></span>
+      <span class="pf-tag pf-tag--top" aria-hidden="true"><i></i>RA · ReGED</span>
+      <span class="pf-tag pf-tag--bottom" aria-hidden="true">Dhaka · 23.8°N 90.4°E</span>
       <picture>
         <source type="image/webp"
                 srcset="/img/portrait-240.webp 240w, /img/portrait-381.webp 381w, /img/portrait-762.webp 762w"
@@ -191,7 +196,7 @@ function home({ site, about, publications, news }) {
   </div>
 
   <div class="wrap hero-visual">
-    ${heroDiagram}
+    ${heroScene}
   </div>
 </section>
 
@@ -217,14 +222,33 @@ function home({ site, about, publications, news }) {
   </div>
 </section>
 
+<section class="section section--loop">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How the work fits together</h2>
+      <p>Most of my papers are one stage of the same loop: a physical asset, a model that stays faithful to it, and decisions that know how uncertain they are.</p>
+    </div>
+    ${researchLoop(eee)}
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     ${divider}
     <h2 class="visually-hidden">By the numbers</h2>
     <div class="metrics">
-      <div class="metric"><span class="value" data-count-to="3">3</span><span class="label">Conference papers</span></div>
-      <div class="metric"><span class="value" data-count-to="3">3</span><span class="label">Under review</span></div>
-      <div class="metric"><span class="value" data-count-to="3.57" data-decimals="2">3.57</span><span class="label">CGPA out of 4.00</span></div>
+      ${[
+        [publications.filter((p) => ['published', 'presented', 'accepted'].includes(p.status)).length, 'Published or accepted', 'waveform'],
+        [publications.filter((p) => ['under-review', 'submitted'].includes(p.status)).length, 'Under review or submitted', 'band'],
+        [projects.length, 'Research projects', 'nodes'],
+        [projects.reduce((n, p) => n + p.outputs.filter((o) => /dataset/i.test(o.label)).length, 0), 'Open datasets', 'meter'],
+      ]
+        .map(
+          ([v, l, ic]) =>
+            `<div class="metric"><span class="metric-icon" aria-hidden="true">${eee[ic]}</span><span class="value" data-count-to="${v}">${v}</span><span class="label">${l}</span></div>`
+        )
+        .join('')}
+      <div class="metric"><span class="metric-icon" aria-hidden="true">${eee.optimize}</span><span class="value" data-count-to="3.57" data-decimals="2">3.57</span><span class="label">CGPA out of 4.00</span></div>
     </div>
   </div>
 </section>

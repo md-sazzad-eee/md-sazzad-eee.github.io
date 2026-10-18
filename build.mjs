@@ -99,7 +99,7 @@ export function layout({
     : '';
 
   const scholarMeta = publications
-    .filter((p) => p.status !== 'under-review')
+    .filter((p) => ['published', 'presented', 'accepted'].includes(p.status))
     .slice(0, 3)
     .map(
       (p) =>
@@ -146,6 +146,9 @@ ${site.profiles.orcid ? `<meta name="citation_author_orcid" content="${attr(site
 ${scholarMeta}
 
 <link rel="alternate" type="application/rss+xml" title="${attr(site.name)} news" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/icon-192.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -238,6 +241,7 @@ ${body}
 
 <script src="/js/site.js" defer></script>
 <script src="/js/effects.js" defer></script>
+<script src="/js/motion.js" defer></script>
 ${scripts.map((s) => `<script src="${s}" defer></script>`).join('\n')}
 </body>
 </html>`;

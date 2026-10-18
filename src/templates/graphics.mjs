@@ -4,8 +4,10 @@
  * work in both themes. Decorative, so every one is aria-hidden.
  */
 
+/* pathLength="1" on every shape lets CSS draw any icon in with a single
+   dash animation, whatever its real length. */
 const s = (d, extra = '') =>
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}${extra}</svg>`;
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${(d + extra).replace(/<(path|circle|rect|line|polyline|ellipse)(?![^>]*pathLength)/g, '<$1 pathLength="1"')}</svg>`;
 
 export const eee = {
   /* Grid following inverter: DC in on the left, AC sine out on the right */
@@ -127,6 +129,57 @@ export const eee = {
     <path d="m3.5 12 8.5 4.2 8.5-4.2"/>
     <path d="m3.5 16.8 8.5 4.2 8.5-4.2"/>
   `),
+  /* Battery energy storage with charge level */
+  battery: s(`
+    <rect x="3" y="7" width="16" height="10" rx="2"/>
+    <path d="M19 10.5h1.5v3H19"/>
+    <path d="M6.5 10v4M9.5 10v4M12.5 10v4"/>
+  `),
+
+  /* Shield with check: cyber-physical attack detection */
+  shield: s(`
+    <path d="M12 3l7 3v5.2c0 4.4-3 8-7 9.8-4-1.8-7-5.4-7-9.8V6z"/>
+    <path d="M9 12l2.2 2.2L15.5 10"/>
+  `),
+
+  /* SiC die with a thermometer: junction temperature and reliability */
+  thermo: s(`
+    <rect x="3" y="8" width="10" height="10" rx="1.5"/>
+    <path d="M5.5 8V5.5M10.5 8V5.5M5.5 18v2.5M10.5 18v2.5"/>
+    <path d="M18 4a1.8 1.8 0 0 1 1.8 1.8v8.4a3.4 3.4 0 1 1-3.6 0V5.8A1.8 1.8 0 0 1 18 4z"/>
+    <path d="M18 9v7"/>
+  `),
+
+  /* Photonic ring resonator coupled to a bus waveguide */
+  ring: s(`
+    <circle cx="12" cy="10" r="5.5"/>
+    <circle cx="12" cy="10" r="3"/>
+    <path d="M3 18.5h18"/>
+    <path d="M5 21l2-2.5M17 21l2-2.5"/>
+  `),
+
+  /* Small rover robot */
+  robot: s(`
+    <rect x="5" y="8" width="14" height="9" rx="2.5"/>
+    <path d="M12 8V5M12 5h.01"/>
+    <circle cx="9.3" cy="12.4" r="1.1"/>
+    <circle cx="14.7" cy="12.4" r="1.1"/>
+    <circle cx="8" cy="19.5" r="1.5"/>
+    <circle cx="16" cy="19.5" r="1.5"/>
+  `),
+
+  /* Conformal prediction band around a trace */
+  band: s(`
+    <path d="M3 8.5c4-3.5 6.5 1.5 9.5-.8S17.5 5 21 7"/>
+    <path d="M3 15.5c4-2.5 6.5 2.5 9.5.4S17.5 13 21 15"/>
+    <path d="M3 12c4-3 6.5 2 9.5-.2S17.5 9 21 11"/>
+  `),
+
+  /* Step and pulse excitation used for calibration */
+  excite: s(`
+    <path d="M3 17h3.5V9H10v8h2.5v-5H16v5h2v-3h3"/>
+    <path d="M3 21h18"/>
+  `),
 };
 
 /* Which icon represents which research interest and project.
@@ -134,28 +187,39 @@ export const eee = {
 export const interestIcon = {
   'Inverter control and stability': 'inverter',
   'Digital twins': 'twin',
-  'Trustworthy machine learning': 'scope',
-  'Power-electronics reliability': 'reliability',
+  'Trustworthy machine learning': 'band',
+  'Power-electronics reliability': 'thermo',
   'Renewable energy integration': 'solar',
   'Distributed energy resources and microgrids': 'nodes',
   'Grid modernization': 'meter',
   'Photovoltaic device modeling': 'layers',
-  'Edge AI and embedded systems': 'chip',
+  'Edge AI and embedded systems': 'robot',
 };
 
 export const projectIcon = {
   'digital-twin-pv': 'twin',
-  'grey-box-inverter': 'inverter',
-  'sic-thermal-history': 'reliability',
-  'photonic-bond-health': 'sensor',
-  'grid-forming-twins': 'waveform',
-  'cyber-physical-detection': 'network',
-  'battery-digital-twin': 'plug',
+  'grey-box-inverter': 'excite',
+  'sic-thermal-history': 'thermo',
+  'photonic-bond-health': 'ring',
+  'grid-forming-twins': 'inverter',
+  'cyber-physical-detection': 'shield',
+  'battery-digital-twin': 'battery',
   'gan-hemt-thermal-pinn': 'chip',
-  'digital-twin-staleness': 'twin',
-  'atlas-robotics': 'nodes',
+  'digital-twin-staleness': 'band',
+  'atlas-robotics': 'robot',
   'perovskite-tandem': 'layers',
   'edge-vision': 'chip',
+};
+
+/* Publication research areas. */
+export const areaIcon = {
+  'Digital twins': 'twin',
+  'Inverter control': 'inverter',
+  'Power electronics reliability': 'thermo',
+  'Cyber-physical security': 'shield',
+  'Energy storage': 'battery',
+  'Photovoltaics': 'solar',
+  'Power systems': 'grid',
 };
 
 /** Fall back to a neutral domain icon rather than rendering nothing. */
