@@ -6,6 +6,7 @@
 import { esc, attr, tidy, fmtDate, icon, NAV, STATUS_LABEL, TYPE_LABEL } from './helpers.mjs';
 import { eee, interestIcon, projectIcon, areaIcon, iconFor } from './graphics.mjs';
 import { heroScene, researchLoop } from './scene.mjs';
+import { areaPages, areaNav, areaCards, areas } from './areas.mjs';
 
 /* ------------------------------------------------------------------ pieces */
 
@@ -229,6 +230,17 @@ function home({ site, about, publications, news, projects }) {
       <p>Most of my papers are one stage of the same loop: a physical asset, a model that stays faithful to it, and decisions that know how uncertain they are.</p>
     </div>
     ${researchLoop(eee)}
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Research areas</h2>
+      <p>Each theme has its own page with the studies behind it, the questions they ask and the numbers they report.</p>
+    </div>
+    ${areaCards()}
+    <p style="margin-top:1.5rem"><a href="/research/data-and-code/">Open data, code and toolbox →</a></p>
   </div>
 </section>
 
@@ -529,6 +541,7 @@ function researchPage({ site, projects }) {
       { href: '/research/', label: 'Research' },
     ],
     body: `
+${areaNav('overview')}
 <section class="page-head">
   <div class="wrap">
     <p class="eyebrow">Research</p>
@@ -537,7 +550,18 @@ function researchPage({ site, projects }) {
   </div>
 </section>
 
+<section class="wrap" style="padding-block:1rem 3rem">
+  <div class="section-head">
+    <h2>Research areas</h2>
+    <p>Four connected themes, each with its own page of studies, headline numbers and an animated schematic.</p>
+  </div>
+  ${areaCards()}
+</section>
+
 <section class="wrap" style="padding-bottom:4rem">
+  <div class="section-head">
+    <h2>All projects</h2>
+  </div>
   <div class="stack-lg">
     ${projects
       .map(
@@ -865,6 +889,12 @@ function sitemapPage({ site, publications, projects }) {
       .join('')}
   </ul>
 
+  <h2 style="margin-top:2.5rem">Research areas</h2>
+  <ul class="link-list" style="margin-top:.75rem">
+    ${areas.map((a) => `<li><a href="/research/${a.slug}/">${icon.doc}<span>${esc(a.title)}</span></a></li>`).join('')}
+    <li><a href="/research/data-and-code/">${icon.doc}<span>Data and code</span></a></li>
+  </ul>
+
   <h2 style="margin-top:2.5rem">Research projects</h2>
   <ul class="link-list" style="margin-top:.75rem">
     ${projects
@@ -917,6 +947,7 @@ export function renderPages(data) {
     cvPage(data),
     contactPage(data),
     sitemapPage(data),
+    ...areaPages(data),
     notFoundPage(data),
   ];
 }

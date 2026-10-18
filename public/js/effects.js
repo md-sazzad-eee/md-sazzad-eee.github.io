@@ -335,7 +335,7 @@
         );
 
         var targets = document.querySelectorAll(
-          '.section-head, .card, .pub, .timeline > li, .metric, .hero-visual, .loop-step'
+          '.section-head, .card, .pub, .timeline > li, .metric, .hero-visual, .loop-step, .area-card, .area-stat, .area-questions li'
         );
         var pending = [];
         Array.prototype.forEach.call(targets, function (el, i) {

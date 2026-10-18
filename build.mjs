@@ -84,7 +84,7 @@ export function layout({
   }
 
   const navHtml = NAV.map((item) => {
-    const current = item.href === pagePath;
+    const current = item.href === pagePath || (item.href !== '/' && pagePath.startsWith(item.href));
     return `<li><a href="${item.href}"${current ? ' aria-current="page"' : ''}>${esc(item.label)}</a></li>`;
   }).join('');
 
