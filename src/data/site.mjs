@@ -456,23 +456,26 @@ export const publications = [
     venueShort: 'TENSYMP',
     year: 2026,
     date: '2026-06-29',
-    dateLabel: '29 June to 1 July 2026',
+    dateLabel: '29 June to 1 July 2026 · pp. 1 to 5',
     place: 'Penang, Malaysia',
     type: 'conference',
     status: 'published',
     area: 'Digital twins',
-    doi: '', // add the DOI once IEEE Xplore indexes it
-    url: '',
+    doi: '10.1109/TENSYMP68909.2026.11704052',
+    url: 'https://ieeexplore.ieee.org/document/11704052',
     abstract:
-      'Develops a physics informed digital twin for multi inverter photovoltaic systems that recalibrates itself against live measurements, and pairs its predictions with conformal prediction intervals to give distribution free coverage guarantees.',
+      'This research introduces a physics informed, self-calibrating digital twin for multi-inverter photovoltaic (PV) power systems and uncertainty quantification frameworks of any uncertainty type that satisfy the conformal type assumption. A compact irradiance-temperature physics baseline model, an inverter-aware residual correction model, conformal physics normalized prediction intervals, and an online self-calibration mechanism for the inverter-specific operating state in the sequence deployment are integrated within the proposed framework. The proposed approach is not only created to significantly enhance the accuracy of PV forecasting, but also to reveal abnormal behavior of the inverter at the inverter level using the uncertainty-aware screening technique. Evaluation of the method is done for the inverter level PV plant data, including 22 inverters, operating in a realistic PV plant environment. The results from the experimental test indicate that the offline hybrid model has a lower mean absolute error of 398.5 W than the other models, while the online self-calibrating digital twin has the best overall performance among the three models with R² = 0.9155, RMSE = 794.1 W and PICP = 95.34% and the lowest WIS of 4304.9 W. Additionally, the uncertainty analysis also highlights that a subset of inverters (confined to a small window) continues to demonstrate under coverage and high risk, even with good fleet-level results. The results illustrate how self-calibration with uncertainty can enable a hybrid PV predictor to become a viable digital-twin system for fleet monitoring, prioritization of inverters and operational decision-making.',
+    keywords: ['Digital twin', 'Photovoltaic systems', 'Physics-informed learning', 'Conformal prediction', 'Uncertainty quantification', 'Self-calibration'],
     abstractPlaceholder: false,
     bibtex: `@inproceedings{kabir2026digitaltwin,
   title     = {A Physics-Informed Self-Calibrating Digital Twin with Conformal Uncertainty for Multi-Inverter PV Power Systems},
   author    = {Kabir, Shaharier and Hossain, Md. Sazzad and Mahamud, Md Sultan and Kabir, Tasnim and Shufian, Abu and Karim, Muhammad Masud and Zishan, Saniat Rahman},
   booktitle = {2026 IEEE Region 10 Symposium (TENSYMP)},
   year      = {2026},
+  pages     = {1--5},
   address   = {Penang, Malaysia},
-  month     = {jun}
+  month     = {jun},
+  doi       = {10.1109/TENSYMP68909.2026.11704052}
 }`,
   },
   {
@@ -756,6 +759,8 @@ export const projects = [
     summary:
       'A digital twin of a multi inverter photovoltaic plant that keeps its internal parameters honest by recalibrating against streaming measurements, and reports conformal prediction intervals instead of bare point estimates. The latest iteration adds a Kalman filter that tracks inverter efficiency itself as a drifting state, so the twin catches degradation rather than just following it.',
     points: [
+      'Published at IEEE TENSYMP 2026: evaluated on inverter-level data from a 22-inverter PV plant, the online self-calibrating twin gave the best overall performance (R² = 0.9155, RMSE = 794.1 W, 95.34% interval coverage, lowest WIS of 4304.9 W), while the offline hybrid model had the lowest MAE at 398.5 W.',
+      'Uncertainty-aware screening that flags individual inverters which stay under-covered and high risk even when fleet-level results look good, so the twin doubles as a tool for prioritizing inverters for maintenance.',
       'Physics informed model structure so that predictions stay consistent with converter dynamics rather than fitting arbitrary curves.',
       'A 27-feature physics-informed representation (irradiance non-linearity, module thermal dynamics, solar angle, temporal lags) feeding a gradient-boosted forecaster that outperformed a full LSTM/GRU/CNN benchmark family by 11.8 to 13.3 percentage points on a 34-day validation window.',
       'Split conformal prediction wrapped around every forecast, holding 96.1% empirical coverage against a 95% nominal target instead of an unverified confidence claim.',
@@ -766,6 +771,7 @@ export const projects = [
     funding: 'Unfunded research.',
     outputs: [
       { label: 'TENSYMP 2026 paper', href: '/publications/#tensymp2026-digitaltwin' },
+      { label: 'IEEE Xplore (DOI)', href: 'https://doi.org/10.1109/TENSYMP68909.2026.11704052' },
       { label: 'ICREST 2027 identifiability audit (submitted)', href: '/publications/#icrest2027-pv-rul-audit' },
     ],
   },
@@ -996,6 +1002,11 @@ export const projects = [
 ];
 
 export const news = [
+  {
+    date: '2026-10-19',
+    title: 'TENSYMP 2026 paper published on IEEE Xplore',
+    body: 'The physics informed self calibrating digital twin with conformal uncertainty for multi inverter PV power systems is now available on IEEE Xplore (DOI 10.1109/TENSYMP68909.2026.11704052).',
+  },
   {
     date: '2026-10-18',
     title: 'Six conference papers accepted for January 2027',
