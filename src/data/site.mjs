@@ -1058,14 +1058,6 @@ export const teaching = {
         'Walked teammates through simulation workflows in MATLAB and Simulink for converter and power system coursework.',
       ],
     },
-    {
-      role: 'Conference presenter',
-      org: 'IEEE TENSYMP 2026 · IEEE PEEIACON 2025',
-      period: '2025 to 2026',
-      points: [
-        'Presented research to international audiences, fielding questions on model structure, uncertainty quantification, and device physics.',
-      ],
-    },
   ],
   interests: [
     'Circuit theory and electronics fundamentals',
