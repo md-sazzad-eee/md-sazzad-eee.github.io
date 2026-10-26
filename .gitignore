@@ -4,3 +4,11 @@
 *.log
 /CV/
 /pink-planet/
+
+# Secrets: never commit environment files or keys
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
